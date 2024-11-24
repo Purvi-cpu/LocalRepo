@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversion Result</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Conversion Result</h1>
+    <div class="card shadow p-4">
+        <h5 class="card-title">Translated Text</h5>
+        <p class="card-text">{{ text }}</p>
+
+        <h5 class="card-title mt-4">Text to Speech</h5>
+        <audio controls class="w-100">
+            <source src="{{ audio_path }}" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <a href="{{ audio_path }}" download="output_audio.mp3" class="btn btn-secondary btn-block mt-3">Download Audio</a>
+    </div>
+</div>
+</body>
+</html>

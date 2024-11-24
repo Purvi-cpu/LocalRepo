@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image to Text & Speech Converter</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Image to Text & Speech Converter</h1>
+    <div class="card shadow p-4">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- File Upload Field -->
+            <div class="form-group">
+                <label for="image" class="btn btn-primary btn-block">Choose Image to Upload</label>
+                <input type="file" id="image" name="image" accept="image/*" style="display:none;" required onchange="showFileName()">
+                <small id="file-name" class="form-text text-muted">No file selected</small>
+            </div>
+
+            <!-- Dropdown for OCR Language -->
+            <div class="form-group">
+                <label for="ocr_lang">Select OCR Language</label>
+                <select name="ocr_lang" id="ocr_lang" class="form-control">
+                    <option value="eng">English</option>
+                    <option value="fra">French</option>
+                    <option value="deu">German</option>
+                    <option value="hin">Hindi</option>
+                    <!-- Add other languages supported by Tesseract -->
+                </select>
+            </div>
+
+            <!-- Dropdown for Translation Target Language -->
+            <div class="form-group">
+                <label for="target_lang">Select Target Language for Speech</label>
+                <select name="target_lang" id="target_lang" class="form-control">
+                    <option value="en">English</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="hi">Hindi</option>
+                    <!-- Add more target languages for TTS -->
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Convert</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showFileName() {
+        const fileInput = document.getElementById('image');
+        const fileNameDisplay = document.getElementById('file-name');
+        fileNameDisplay.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file selected';
+    }
+</script>
+</body>
+</html>
